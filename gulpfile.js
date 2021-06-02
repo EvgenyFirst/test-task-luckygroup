@@ -1,4 +1,4 @@
-const {src, dest, series, watch} = require('gulp');
+const { src, dest, series, watch } = require('gulp');
 const sass = require('gulp-sass');
 const sync = require('browser-sync').create();
 const csso = require('gulp-csso');
@@ -39,8 +39,21 @@ const getAboutHtmlMin = () => {
 
 exports.getAboutHtmlMin = getAboutHtmlMin;
 
+// Copy
+const copyImgNormCss = () => {
+    return src([
+        'src/img/**/*.ico',
+        'src/img/**/*.{jpg,jpeg,png,svg',
+        'src/css/normalize.css'
+    ], {
+        base: "src"
+    })
+        .pipe(dest('./'))
+}
+exports.copyImgNormCss = copyImgNormCss;
+
 // Server
-const runServer = done => {
+const runServer = () => {
     sync.init({
         server: {
             baseDir: "./"
@@ -51,10 +64,17 @@ const runServer = done => {
     watch('src/index.html', series(getIndexHtmlMin)).on('change', sync.reload)
     watch('src/about.html', series(getAboutHtmlMin)).on('change', sync.reload)
     watch('src/scss/**/*.scss', series(getCssMin)).on('change', sync.reload)
+    watch('src/img/**/*.*', series(copyImgNormCss)).on('change', sync.reload)
 }
 
 exports.runServer = runServer;
 
 // Build
-exports.start = series(getIndexHtmlMin, getAboutHtmlMin, getCssMin, runServer)
-exports.server = series(runServer)
+exports.start =
+    series(
+        getIndexHtmlMin,
+        getAboutHtmlMin,
+        getCssMin,
+        copyImgNormCss,
+        runServer
+    )
