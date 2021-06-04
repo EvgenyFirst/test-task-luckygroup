@@ -29,46 +29,67 @@
             </p>
         </div>
         <div>
-            <span>
-                <img src="img/redislim.png" width="223" height="122" alt="Reduslim">
+            <span class="modal__circle">
+                <img class="modal__circle-img" src="img/redislim.png" width="223" height="122" alt="Reduslim">
             </span>
         </div>
-        <h2>
+
+        <h2 class="modal__header">
             Сделай шаг к выздоровлению
         </h2>
 
+        <form class="modal__form" name='orderform' action="/">
+            <div class="modal__form-wrapper">
+                <p class="modal__form-name-input">
+                    <label class="modal__form-phone-p" for="user-name">Ваше <span
+                            class="modal__form-phone-add">имя</span></label>
+                    <input class="modal__form-phone-p-input" id="user-name" type="text" name="phoneusr"
+                        placeholder="Алексей">
+                </p>
+                <div class="modal__form-phone">
+                    <p class="modal__form-phone-input">
+                        <label class="modal__form-phone-label modal__form-phone-p" for="telnumber">Ваш <span
+                                class="modal__form-phone-add">телефон</span></label>
+                        <span class="modal__form-phone-wrapper">
+                            <input class="modal__form-phone-p-input" id="telnumber" type="text" name="phoneusr"
+                                placeholder="+7 (123) 456 78-90">
+                            <select class="modal__form-phone-input-select modal__form-phone-input-select-flag-ru"
+                                name='list' onChange='ChangePlaceholder()'>
+                                <!-- img src="../img/russian-flag.svg" width="27" height="18" alt="Flag-RU"> -->
+                                <option class="modal__form-phone-p-option" selected value="+7 (123) 456 78-90">
+                                    RU</option>
+                                <option class="modal__form-phone-p-option" id="modal__option-ru"
+                                    value="+7 (111) 111-11-11">RU2</option>
+                            </select>
+                        </span>
+                    </p>
 
-        <form name='orderform' action="/">
-            <div>
-                <input id='telnumber' placeholder="+7 (123) 456 78-90">
+                </div>
 
-                <select name='s' onChange='ChangePlaceholder()'>
-                    <option selected value="+7 (123) 456 78-90">RU </option>
-                    <option value="+1 234 567-89-00">EN </option>
-                </select>
+                <button class="modal__form-button" type="submit">Заказать</button>
             </div>
-
-            <button type="submit">Заказать</button>
         </form>
 
-        <script>
-            function ChangePlaceholder() {
-                var of = document.orderform.s
-                var result = of.options[of.selectedIndex].value
-                document.all.telnumber.placeholder = result
-            }
-        </script>
 
-        <div>
-            <p>
+
+        <div class="modal__protection">
+            <p class="modal__protection-p">
                 Trusted
             </p>
             <img src="img/lock.svg" width="12" height="15" alt="Замок">
-            <p>
+            <p class="modal__protection-p">
                 Secure
             </p>
         </div>
     </div>
+
+    <script>
+        function ChangePlaceholder() {
+            var of = document.orderform.list
+            var result = of.options[of.selectedIndex].value
+            document.all.telnumber.placeholder = result
+        }
+    </script>
 </body>
 
 </html>

@@ -42,8 +42,7 @@ exports.getAboutHtmlMin = getAboutHtmlMin;
 // Copy
 const copyImgNormCss = () => {
     return src([
-        'src/img/**/*.ico',
-        'src/img/**/*.{jpg,jpeg,png,svg',
+        'src/img/**/**/*.*',
         'src/css/normalize.css'
     ], {
         base: "src"
