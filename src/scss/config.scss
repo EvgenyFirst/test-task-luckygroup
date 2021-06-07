@@ -15,8 +15,12 @@ body {
     background-position: top center;
     background-repeat: no-repeat;
 
-    // background-image: url("../src/320.jpg");
+    // background-image: url("../src/1280.jpg");
     // opacity: 0.5;
 
     overflow-x: hidden;
+
+    @media (min-width: 1280px) {
+        min-height: 577px;
+    }
 }
